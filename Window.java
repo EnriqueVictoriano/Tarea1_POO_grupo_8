@@ -7,16 +7,24 @@ public class Window {
         id = nextId++;
     }
     public void open() {
-        ...
+        state= State.OPEN;
+        //...
     }
     public void close() {
-        ...
+        state = State.CLOSE;
+        //...
     }
     public String getHeader(){
         return "w"+id;
     }
     public int getState(){
-        ...
+        if(state== State.OPEN){
+            return 0;
+        } else {
+            return 1;
+        }
+        
+        //...
     }
     private MagneticSensor magneticSensor;
     private State state;

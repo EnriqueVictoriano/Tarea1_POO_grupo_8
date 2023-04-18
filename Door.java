@@ -8,18 +8,22 @@ public class Door {
         id = nextId++;
     }
     public void open() {
-        ...
-        //magneticSensor.moveMagnetAwayFromSwitch();
-
+        state= State.OPEN;
+        
     }
     public void close() {
-        ...
+        state = State.CLOSE;
     }
+
     public String getHeader(){
         return "d"+id;
     }
     public int getState(){
-        ...
+        if(state== State.OPEN){
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     private MagneticSensor magneticSensor;

@@ -14,7 +14,7 @@ public class Stage1 {
         int numDoors = in.nextInt();
         for (int i = 0; i < numDoors; i++)
             doors.add(new Door());
-        //...
+        //... 
         int numWindows = in.nextInt();
         for (int i = 0; i < numWindows; i++)
             windows.add(new Window());
@@ -28,11 +28,13 @@ public class Stage1 {
         while (!done) {
             printState(step++, out);
             command = in.next().charAt(0);
+            //System.out.println("ingresaste comando");
             switch (command) {
                 case 'd':
                     parameter = in.next().charAt(0);
-                    if (parameter == 'o')
-                        doors.get(0).open();
+                    if (parameter == 'o'){
+                    //System.out.println("pusiste una o");
+                        doors.get(0).open();}
                     else
                         doors.get(0).close();
                     break;
@@ -43,7 +45,9 @@ public class Stage1 {
                         windows.get(0).open();
                     else
                         windows.get(0).close();
-                case 'x': done=true;   // Added to finish the program
+                    break;
+                case 'x': done=true;
+                   // Added to finish the program
             }
         }
     }
@@ -58,7 +62,14 @@ public class Stage1 {
     }
     public void printState(int step, PrintStream out){
         out.print(step);
-        .....
+        for (int i=0; i < doors.size(); i++)
+            out.print("\t"+doors.get(i).getState());
+
+        for (int i=0; i < windows.size(); i++)
+            out.print("\t"+windows.get(i).getState());
+        out.println();
+        
+        //.....
 
     }
     public static void main(String [] args) throws IOException {
@@ -67,7 +78,7 @@ public class Stage1 {
             System.exit(-1);
         }
         Scanner in = new Scanner(new File(args[0]));
-        //System.out.println("File: " + args[0]);
+        System.out.println("File: " + args[0]);
         Stage1 stage = new Stage1();
         stage.readConfiguration(in);
         stage.executeUserInteraction(new Scanner(System.in), new PrintStream(new File("output.csv")));
