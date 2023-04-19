@@ -37,12 +37,10 @@ public class Stage2 {
         while (!done) {
             printState(step++, out);
             command = in.next().charAt(0);
-            //System.out.println("ingresaste comando");
             switch (command) {
                 case 'd':
                     parameter = in.next().charAt(0);
                     if (parameter == 'o'){
-                    //System.out.println("pusiste una o");
                         doors.get(0).open();}
                     else
                         doors.get(0).close();
@@ -58,14 +56,14 @@ public class Stage2 {
                 case 'k':
                     parameter = in.next().charAt(0);
                     switch (parameter){
-                        case a:
+                        case 'a':
                             //todo
                             central.arm();
                             break;
-                        case p:
+                        case 'p':
                             //perimetro
                             break;
-                        case d:
+                        case 'd':
                             //desarmar
                             central.disarm();
                             break;
