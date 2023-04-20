@@ -23,8 +23,10 @@ public class Window {
         } else {
             return 1;
         }
+    }
+    public Sensor getSensor(){
+        return magneticSensor;
         
-        //...
     }
     private MagneticSensor magneticSensor;
     private State state;

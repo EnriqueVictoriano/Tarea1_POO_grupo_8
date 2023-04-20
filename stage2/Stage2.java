@@ -13,18 +13,19 @@ public class Stage2 {
         // reading <#_doors> <#_windows> <#_PIRs>
         central = new Central();
         int numDoors = in.nextInt();
-        for (int i = 0; i < numDoors; i++)
+        for (int i = 0; i < numDoors; i++) {
             doors.add(new Door());
-            central...
-
+            central.addNewSensor(doors.get(i).getSensor(), i);
+        }
         int numWindows = in.nextInt();
-        for (int i = 0; i < numWindows; i++)
+        for (int i = 0; i < numWindows; i++) {
             windows.add(new Window());
-            central....
+            central.addNewSensor(windows.get(i).getSensor(), (i + 1));
+        }
         //...
         in.nextLine();
-        String soundFile = in.next();
-        siren = new Siren(soundFile);
+        //String soundFile = in.next();
+        siren = new Siren();
         central.setSiren(siren);
 
         in.close();
@@ -55,19 +56,32 @@ public class Stage2 {
                     break;
                 case 'k':
                     parameter = in.next().charAt(0);
-                    switch (parameter){
-                        case 'a':
-                            //todo
-                            central.arm();
-                            break;
-                        case 'p':
-                            //perimetro
-                            break;
-                        case 'd':
-                            //desarmar
-                            central.disarm();
-                            break;
+                    if(parameter == 'a'){
+                        for(int i=0; i<doors.size(); i++){
+                            //central.arm();
+                            doors.get(i).close();
+                        }
+                        for(int i=0; i<windows.size(); i++){
+                            //central.arm();
+                            windows.get(i).close();
+                        }
+
+                        
+                        //central.arm();
+                    } else if (parameter == 'p') {
+                        //perimetro
+                    }else if(parameter == 'd'){
+                        for(int i=0; i<doors.size(); i++){
+                            //central.arm();
+                            doors.get(i).open();
+                        }
+                        for(int i=0; i<windows.size(); i++){
+                            //central.arm();
+                            windows.get(i).open();
+                        }
+                        //central.disarm();
                     }
+                    break;
                 case 'x': done=true;
                    // Added to finish the program
             }
@@ -110,4 +124,5 @@ public class Stage2 {
     private ArrayList<Window> windows;
     private Central central;
     private Siren siren;
+    
 }

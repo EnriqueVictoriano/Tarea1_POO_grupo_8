@@ -26,6 +26,10 @@ public class Door {
         }
     }
 
+    public Sensor getSensor(){
+        return magneticSensor;
+    }
+
     private MagneticSensor magneticSensor;
     private State state;
     private final int id;
